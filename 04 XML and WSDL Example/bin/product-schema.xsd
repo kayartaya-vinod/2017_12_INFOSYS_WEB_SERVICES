@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://entity.vinod.co"
+	xmlns:tns="http://entity.vinod.co" elementFormDefault="qualified">
+	
+	
+	
+	<!-- eventually this will be used as a class (wsimport) -->
+	<!-- co.vinod.entity.Product -->
+	<complexType name="product">
+		<sequence>
+			<element name="name" type="string" />
+			<element name="description" type="string" />
+			<element name="quantity-per-unit" type="string" />
+			<element name="unit-price" type="double" />
+			<element name="discount" type="double" />
+			<element name="picture" type="string" />
+			<element name="brand" type="tns:brand" />
+			<element name="category" type="tns:category" />
+		</sequence>
+		<attribute name="id" type="int" />
+	</complexType>
+	
+
+	<!-- eventually this will be used as a class (wsimport) -->
+	<!-- co.vinod.entity.Brand -->
+	<complexType name="brand">
+		<sequence>
+			<element name="id" type="int" />
+			<element name="name" type="string" />
+		</sequence>
+	</complexType>
+
+	<!-- eventually this will be used as a class Category (wsimport) -->
+	<!-- co.vinod.entity.Category -->
+	<complexType name="category">
+		<sequence>
+			<element name="id" type="int" />
+			<element name="name" type="string" />
+		</sequence>
+	</complexType>
+</schema>

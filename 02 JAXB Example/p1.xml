@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<product id="1">
+    <name>Potato</name>
+    <description>Royal Potato Medium Size</description>
+    <quantity-per-unit>1 Kg pack</quantity-per-unit>
+    <unit-price>35.0</unit-price>
+    <discount>0.0</discount>
+    <picture>p001potato.png</picture>
+    <brand>
+        <id>1</id>
+        <name>Malnad</name>
+    </brand>
+</product>

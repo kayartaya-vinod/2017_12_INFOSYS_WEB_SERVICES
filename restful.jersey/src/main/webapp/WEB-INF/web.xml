@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	
+	<servlet>
+		<servlet-name>s1</servlet-name>
+		<!-- This is the front-controller servlet -->
+		<!-- 1. load all resources (classes annotated with @Path) into the JVM -->
+		<!-- 2. handle all requests of a particular pattern (/rest/*)  -->
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+	
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<!-- load the resources only from this package -->
+			<param-value>co.vinod.resources</param-value>
+		</init-param>
+	
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>s1</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://vinod.co/ws" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	name="product-service"
+	targetNamespace="http://vinod.co/ws">
+
+	<!-- The first 3 elements of WSDL (types, message, portType) are together 
+		known as abstract part of the WSDL -->
+
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://vinod.co/ws">
+
+			<!-- eventually this will be used as a class (wsimport) -->
+			<!-- co.vinod.entity.Product -->
+			<xsd:complexType name="product">
+				<xsd:sequence>
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="description" type="xsd:string" />
+					<xsd:element name="quantity-per-unit" type="xsd:string" />
+					<xsd:element name="unit-price" type="xsd:double" />
+					<xsd:element name="discount" type="xsd:double" />
+					<xsd:element name="picture" type="xsd:string" />
+					<xsd:element name="brand" type="tns:brand" />
+					<xsd:element name="category" type="tns:category" />
+				</xsd:sequence>
+				<xsd:attribute name="id" type="xsd:int" />
+			</xsd:complexType>
+
+
+			<!-- eventually this will be used as a class (wsimport) -->
+			<!-- co.vinod.entity.Brand -->
+			<xsd:complexType name="brand">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:int" />
+					<xsd:element name="name" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<!-- eventually this will be used as a class Category (wsimport) -->
+			<!-- co.vinod.entity.Category -->
+			<xsd:complexType name="category">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:int" />
+					<xsd:element name="name" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="getById" type="tns:getById" />
+			<xsd:complexType name="getById">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:int" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="getByIdResponse" type="tns:getByIdResponse" />
+			<xsd:complexType name="getByIdResponse">
+				<xsd:sequence>
+					<xsd:element name="product" type="tns:product" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+
+	<!-- a pair of messages for each operation -->
+	<wsdl:message name="getByIdIn">
+		<wsdl:part name="parameter1" element="tns:getById" />
+	</wsdl:message>
+	<wsdl:message name="getByIdOut">
+		<wsdl:part name="parameters" element="tns:getByIdResponse" />
+	</wsdl:message>
+
+	<!-- defines the contract; java interface for the service -->
+	<wsdl:portType name="ProductServiceSoap">
+		<wsdl:operation name="getById">
+			<!-- request/response, solicit request/response, one-way, notification -->
+			<wsdl:input message="tns:getByIdIn" />
+			<wsdl:output message="tns:getByIdOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<!-- The second part of the WSDL (2 elements binding, service) define the 
+		implementation details of the SOAP engine -->
+
+	<wsdl:binding name="ProductServiceSoapBinding" type="tns:ProductServiceSoap">
+		<!-- style of message transport -> document, rpc (old fashioned) -->
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="getById">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>	
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>	
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	<!-- for the soap engine, this is the factory with factory methods -->
+	<wsdl:service name="ProductService">
+		<wsdl:port name="ProductServiceSoap" binding="tns:ProductServiceSoapBinding" >
+			<soap:address location="http://localhost:8080/ws/product-service"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
+
+
+
+
+
+
+
+
+

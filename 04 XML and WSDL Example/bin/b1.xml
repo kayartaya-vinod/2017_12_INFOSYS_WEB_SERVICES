@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:brand xmlns:tns="my-own-namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="my-own-namespace product-schema.xsd">
+	<tns:id>12</tns:id>
+	<tns:name>My own brand</tns:name>
+</tns:brand>

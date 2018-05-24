@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<product id="1">
+	<name>Test product 1</name>
+	<price currency="INR">45.67</price>
+</product>
